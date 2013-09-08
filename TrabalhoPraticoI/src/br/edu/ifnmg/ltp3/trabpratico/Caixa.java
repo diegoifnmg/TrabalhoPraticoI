@@ -14,7 +14,6 @@ public class Caixa {
     double saldo;
     
     //Constructor
-    
     public Caixa() {
     }
     //Constructor
