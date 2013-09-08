@@ -1,6 +1,9 @@
 
 package br.edu.ifnmg.ltp3.trabpratico;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author diego
@@ -37,7 +40,11 @@ public class Caixa {
     }
 
     public void setData(String data) {
-        this.data = data;
+        Pattern Data = Pattern.compile("\\d{1,31}\\/\\d{1,12}\\/\\d{0,}");
+        Matcher verifica = Data.matcher(data);
+        
+        if(verifica.matches())
+              this.data = data;
     }
 
     public double getSaldo() {
