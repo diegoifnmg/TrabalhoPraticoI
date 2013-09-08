@@ -1,6 +1,9 @@
 
 package br.edu.ifnmg.ltp3.trabpratico;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author diego
@@ -11,7 +14,6 @@ public class Funcionario {
     String senha;
     
     //Constructor
-
     public Funcionario() {
     }
 
@@ -36,7 +38,14 @@ public class Funcionario {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        Pattern Nome = Pattern.compile("^[a-z0-9_-]{3,15}$");
+        Matcher verifica = Nome.matcher(nome);
+        
+        if(verifica.matches()){
+              this.nome = nome;
+        }else{
+            System.out.print("Min 3 Max 15 com _ ou -!");
+        }
     }
 
     public String getSenha() {
@@ -44,7 +53,14 @@ public class Funcionario {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        Pattern Senha = Pattern.compile("[\\d{1,}|\\w{1,}]{8}");
+        Matcher verifica = Senha.matcher(senha);
+        
+        if(verifica.matches()){
+              this.senha = senha;
+        }else{
+            System.out.print("Min 1 letra ou numero, Max 8 Caractere!");
+        }
     }
 
     @Override
