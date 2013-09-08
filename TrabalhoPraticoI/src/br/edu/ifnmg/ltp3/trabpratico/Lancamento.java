@@ -1,6 +1,9 @@
 
 package br.edu.ifnmg.ltp3.trabpratico;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author diego
@@ -50,7 +53,14 @@ public class Lancamento {
     }
 
     public void setDataPagamento(String dataPagamento) {
-        this.dataPagamento = dataPagamento;
+        Pattern Data = Pattern.compile("\\d{1,31}\\/\\d{1,12}\\/\\d{0,}");
+        Matcher verifica = Data.matcher(dataPagamento);
+        
+        if(verifica.matches()){
+            this.dataPagamento = dataPagamento;
+        }else{
+            System.out.print("Data Inválida");
+        }
     }
 
     public String getDataVencimento() {
@@ -58,7 +68,14 @@ public class Lancamento {
     }
 
     public void setDataVencimento(String dataVencimento) {
-        this.dataVencimento = dataVencimento;
+        Pattern Data = Pattern.compile("\\d{1,31}\\/\\d{1,12}\\/\\d{0,}");
+        Matcher verifica = Data.matcher(dataVencimento);
+        
+        if(verifica.matches()){
+            this.dataVencimento = dataVencimento;
+        }else{
+            System.out.print("Data Inválida");
+        }
     }
 
     public double getDesconto() {
@@ -66,7 +83,11 @@ public class Lancamento {
     }
 
     public void setDesconto(double desconto) {
-        this.desconto = desconto;
+        if(desconto > 0){
+            this.desconto = desconto;
+        }else{
+            System.out.print("Desconto Inválido");
+        }
     }
 
     public int getFormaPagamento() {
@@ -74,7 +95,20 @@ public class Lancamento {
     }
 
     public void setFormaPagamento(int formaPagamento) {
-        this.formaPagamento = formaPagamento;
+        do{
+            if(formaPagamento == 1){
+                this.formaPagamento = formaPagamento;
+                System.out.print("Dinheiro");
+            }
+            if(formaPagamento == 2){
+                this.formaPagamento = formaPagamento;
+                System.out.print("Cartão");
+            }
+            if(formaPagamento == 3){
+                this.formaPagamento = formaPagamento;
+                System.out.print("Boleto");
+            }
+        }while((formaPagamento >= 1) && (formaPagamento <= 3));
     }
 
     public Funcionario getFuncionario() {
@@ -90,7 +124,11 @@ public class Lancamento {
     }
 
     public void setMulta(double multa) {
-        this.multa = multa;
+        if(multa >=0){
+            this.multa = multa;
+        }else{
+            System.out.print("Valor Inválido");
+        }
     }
 
     public Sessao getSessao() {
