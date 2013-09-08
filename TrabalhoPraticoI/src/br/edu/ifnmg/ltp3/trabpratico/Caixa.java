@@ -43,8 +43,11 @@ public class Caixa {
         Pattern Data = Pattern.compile("\\d{1,31}\\/\\d{1,12}\\/\\d{0,}");
         Matcher verifica = Data.matcher(data);
         
-        if(verifica.matches())
+        if(verifica.matches()){
               this.data = data;
+        }else{
+            System.out.print("Formato da data Errado!");
+        }
     }
 
     public double getSaldo() {
@@ -52,7 +55,12 @@ public class Caixa {
     }
 
     public void setSaldo(double saldo) {
-        this.saldo = saldo;
+        if(saldo >= 0){
+            this.saldo = saldo;
+        }else{
+            System.out.print("Saldo Inválido!");
+        }
+        
     }
     
     //Equal and HashCode
