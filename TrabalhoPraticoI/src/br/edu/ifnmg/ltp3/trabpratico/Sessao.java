@@ -26,7 +26,9 @@ public class Sessao {
         this.caixa = caixa;
         this.funcionario = funcionario;
     }
-
+    // Metodos
+    
+    
     public Caixa getCaixa() {
         return caixa;
     }
