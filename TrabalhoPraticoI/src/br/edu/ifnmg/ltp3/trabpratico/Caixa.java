@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
  * @author diego
  */
 public class Caixa {
-    int codigo;
-    String data;
-    double saldo;
+    private int codigo;
+    private String data;
+    private double saldo;
     
     //Constructor
     public Caixa() {
