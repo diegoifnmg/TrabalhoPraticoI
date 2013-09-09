@@ -1,6 +1,8 @@
 
 package br.edu.ifnmg.ltp3.trabpratico;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,14 +11,14 @@ import java.util.regex.Pattern;
  * @author diego
  */
 public class Lancamento {
-    int codigo;
-    double valor;
-    double multa;
-    double desconto;
-    int formaPagamento;     // retorna um int
-    String dataVencimento;
-    String dataPagamento;
-    Sessao sessao;
+    private int codigo;
+    private double valor;
+    private double multa;
+    private double desconto;
+    private int formaPagamento;     // retorna um int
+    private String dataVencimento;
+    private String dataPagamento;
+    private List<Sessao> sessoes;
     Funcionario funcionario;
     
     //Construct
@@ -34,7 +36,7 @@ public class Lancamento {
         this.formaPagamento = formaPagamento;
         this.dataVencimento = dataVencimento;
         this.dataPagamento = dataPagamento;
-        this.sessao = sessao;
+        sessoes = new ArrayList<Sessao>();
         this.funcionario = funcionario;
     }
     
@@ -47,7 +49,14 @@ public class Lancamento {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-
+    
+    public void addSessao(Sessao sessao){
+        if(!sessoes.contains(sessao)){
+            sessoes.add(sessao);
+            
+        }
+    }
+    
     public String getDataPagamento() {
         return dataPagamento;
     }
@@ -131,14 +140,14 @@ public class Lancamento {
         }
     }
 
-    public Sessao getSessao() {
-        return sessao;
+    public void setSessao(List<Sessao> sessoes) {
+        this.sessoes = sessoes;
     }
-
-    public void setSessao(Sessao sessao) {
-        this.sessao = sessao;
+    
+    public List<Sessao> getItens() {
+        return sessoes;
     }
-
+    
     public double getValor() {
         return valor;
     }
@@ -177,7 +186,7 @@ public class Lancamento {
         if ((this.dataPagamento == null) ? (other.dataPagamento != null) : !this.dataPagamento.equals(other.dataPagamento)) {
             return false;
         }
-        if (this.sessao != other.sessao && (this.sessao == null || !this.sessao.equals(other.sessao))) {
+        if (this.sessoes != other.sessoes && (this.sessoes == null || !this.sessoes.equals(other.sessoes))) {
             return false;
         }
         if (this.funcionario != other.funcionario && (this.funcionario == null || !this.funcionario.equals(other.funcionario))) {
@@ -188,27 +197,23 @@ public class Lancamento {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + this.codigo;
-        hash = 17 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
-        hash = 17 * hash + (int) (Double.doubleToLongBits(this.multa) ^ (Double.doubleToLongBits(this.multa) >>> 32));
-        hash = 17 * hash + (int) (Double.doubleToLongBits(this.desconto) ^ (Double.doubleToLongBits(this.desconto) >>> 32));
-        hash = 17 * hash + this.formaPagamento;
-        hash = 17 * hash + (this.dataVencimento != null ? this.dataVencimento.hashCode() : 0);
-        hash = 17 * hash + (this.dataPagamento != null ? this.dataPagamento.hashCode() : 0);
-        hash = 17 * hash + (this.sessao != null ? this.sessao.hashCode() : 0);
-        hash = 17 * hash + (this.funcionario != null ? this.funcionario.hashCode() : 0);
+        int hash = 5;
+        hash = 79 * hash + this.codigo;
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.multa) ^ (Double.doubleToLongBits(this.multa) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.desconto) ^ (Double.doubleToLongBits(this.desconto) >>> 32));
+        hash = 79 * hash + this.formaPagamento;
+        hash = 79 * hash + (this.dataVencimento != null ? this.dataVencimento.hashCode() : 0);
+        hash = 79 * hash + (this.dataPagamento != null ? this.dataPagamento.hashCode() : 0);
+        hash = 79 * hash + (this.sessoes != null ? this.sessoes.hashCode() : 0);
+        hash = 79 * hash + (this.funcionario != null ? this.funcionario.hashCode() : 0);
         return hash;
     }
-    
-    //ToString
 
     @Override
     public String toString() {
-        return "Lancamento{" + "codigo=" + codigo + ", valor=" + valor + ", multa=" + multa + ", desconto=" + desconto + ", formaPagamento=" + formaPagamento + ", dataVencimento=" + dataVencimento + ", dataPagamento=" + dataPagamento + ", sessao=" + sessao + ", funcionario=" + funcionario + '}';
+        return "Lancamento{" + "codigo=" + codigo + ", valor=" + valor + ", multa=" + multa + ", desconto=" + desconto + ", formaPagamento=" + formaPagamento + ", dataVencimento=" + dataVencimento + ", dataPagamento=" + dataPagamento + ", sessoes=" + sessoes + ", funcionario=" + funcionario + '}';
     }
-    
-    
-    
+
     
 }
