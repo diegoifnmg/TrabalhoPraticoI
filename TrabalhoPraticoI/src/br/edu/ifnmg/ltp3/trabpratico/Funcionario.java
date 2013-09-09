@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
  * @author diego
  */
 public class Funcionario {
-    int codigo;
-    String nome;
-    String senha;
+    private int codigo;
+    private String nome;
+    private String senha;
     
     //Constructor
     public Funcionario() {

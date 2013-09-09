@@ -19,7 +19,8 @@ public class Lancamento {
     private String dataVencimento;
     private String dataPagamento;
     private List<Sessao> sessoes;
-    Funcionario funcionario;
+    private Funcionario funcionario;
+    private Caixa caixa;
     
     //Construct
 
@@ -95,9 +96,11 @@ public class Lancamento {
         return desconto;
     }
 
-    public void setDesconto(double desconto) {
+    public void setDesconto(double desconto,double valor) {
         if(desconto > 0){
             this.desconto = desconto;
+            valor = this.valor - this.desconto;
+            caixa.setSaldo(valor);
         }else{
             System.out.print("Desconto Inválido");
         }
@@ -136,9 +139,11 @@ public class Lancamento {
         return multa;
     }
 
-    public void setMulta(double multa) {
+    public void setMulta(double multa,double valor) {
         if(multa >=0){
             this.multa = multa;
+            valor = this.valor + this.multa;
+            caixa.setSaldo(valor);
         }else{
             System.out.print("Valor Inválido");
         }
@@ -148,7 +153,7 @@ public class Lancamento {
         this.sessoes = sessoes;
     }
     
-    public List<Sessao> getItens() {
+    public List<Sessao> getSessao() {
         return sessoes;
     }
     

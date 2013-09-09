@@ -1,24 +1,28 @@
 
 package br.edu.ifnmg.ltp3.trabpratico;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author diego
  */
 public class Sessao {
-    int codigo;
-    String data;
-    double saldoAbertura;
-    double saldoFechamento;
-    Caixa caixa;
-    Funcionario funcionario;
+    private int codigo;
+    private String data;
+    private double saldoAbertura;
+    private double saldoFechamento;
+    private Caixa caixa;
+    private Funcionario funcionario;
     
     //Construct
 
     public Sessao() {
     }
 
-    public Sessao(int codigo, String data, double saldoAbertura, double saldoFechamento, Caixa caixa, Funcionario funcionario) {
+    public Sessao(int codigo, String data, double saldoAbertura, 
+            double saldoFechamento, Caixa caixa, Funcionario funcionario) {
         this.codigo = codigo;
         this.data = data;
         this.saldoAbertura = saldoAbertura;
@@ -31,10 +35,6 @@ public class Sessao {
     
     public Caixa getCaixa() {
         return caixa;
-    }
-
-    public void setCaixa(Caixa caixa) {
-        this.caixa = caixa;
     }
 
     public int getCodigo() {
@@ -50,7 +50,14 @@ public class Sessao {
     }
 
     public void setData(String data) {
-        this.data = data;
+        Pattern Data = Pattern.compile("\\d{1,31}\\/\\d{1,12}\\/\\d{0,}");
+        Matcher verifica = Data.matcher(data);
+        
+        if(verifica.matches()){
+            this.data = data;
+        }else{
+            System.out.print("Data Inválida");
+        }
     }
 
     public Funcionario getFuncionario() {
