@@ -52,8 +52,12 @@ public class Lancamento {
     
     public void addSessao(Sessao sessao){
         if(!sessoes.contains(sessao)){
-            sessoes.add(sessao);
-            
+            sessoes.add(sessao);   
+        }
+    }
+    public void removeSessao(Sessao sessao){
+        if(sessoes.contains(sessao)){
+            sessoes.remove(sessao);
         }
     }
     
